@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vamos_convarsar</title>
     <link rel="stylesheet" href="Kwitter.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <center>
-        <h1>vamos conversar???</h1>
-        <input type="tetx" id="userName" class="form-control" placeholder="Nome de usuario">
-        <hr>
-        <button id="loginButton" class="btn btn-sucssess" onclick="addUser()">Log in</button>
-        <script src="Kwitter.js"></script>
+        <h1 class="header">
+            vamos conversar???</h1>
+            <img src="logo.png" id="img">
+
+        <div class="container">
+            <hr>      
+            <input type="tetx" id="userName" class="form-control" placeholder="Nome de usuario">
+            <hr>    
+            <button id="loginButton" class="btn btn-primary" onclick="addUser()">Log in</button>
+            <script src="Kwitter.js"></script>
+        </div>
     </center>
 </body>
 </html>

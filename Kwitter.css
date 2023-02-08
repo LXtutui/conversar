@@ -1,3 +1,10 @@
 body {
  background-color: rgb(123, 123, 236)!important;
 }
+#loginButton
+{
+	width:100%;border-radius: 15px;
+}
+#img{
+    width: 20%;
+}
