@@ -9,8 +9,7 @@ const firebaseConfig = {
   };
 firebase.initializeApp(firebaseConfig);
 var nome_usuario = localStorage.getItem("userName");
-var nome_sala = localStorage.getItem("room")
-document.getElementById("user_name").innerHTML="Benvindo(a) " + nome_usuario;
+var nome_sala = localStorage.getItem("room");
 
 function addMessage(){
     var mensagem = document.getElementById("mensagem").value;
@@ -24,10 +23,23 @@ function addMessage(){
 
 function getData() {firebase.database().ref("/").on('value',
     function(snapshot) {document.getElementById("output").innerHTML ="";
-        snapshot.forEach(function(childSnapshot) {childKey =childSnapshot.key;
-        roomNames = childKey;
-            var caixa = "<div class='roomName 'id="+roomNames+" onclick='redirectRoom(this.id)'> #"+roomNames+"</div><hr>";
+        snapshot.forEach(function(childSnapshot) {
+            childKey =childSnapshot.key;
+            var childData=childSnapshot.val();
+            if(childKey!="purpose"){
+                var id_da_mensagem=childKey;
+                var dados_da_mensagem=childData;
+                var nome=dados_da_mensagem["name"];
+                var mensagem=dados_da_mensagem["message"];
+                var like=dados_da_mensagem["like"];
+            }
+            var name_tag="<h4>"+nome+"</h4>";
+            var mensagem_tag="<h4>"+mensagem+"</h4>";
+            var btn_like = "<button class='btn btn-primary' id="+id_da_mensagem+" value="+like+" onclick='atualiza_like(this.id)'>";
+            var span = "<span>like: "+like+"</span></button><hr>";
+            var caixa = name_tag+mensagem_tag+btn_like+span;
             document.getElementById("output").innerHTML+=caixa;
+
         });
     });
 }
@@ -38,3 +50,13 @@ function logout(){
     localStorage.removeItem("room");
     window.location="index.html";
 }
+function atualiza_like(id_da_mensagem){
+    console.log("clicado btn likr- "+id_da_mensagem);
+    var btn = id_da_mensagem;
+    var like = document.getElementById(btn).value;
+    var conta_like = Number(like)+1;
+    console.log("numero de likes é :"+conta_like);
+    firebase.database().ref(nome_sala).child(id_da_mensagem).update({
+      like:conta_like
+    });
+  }
