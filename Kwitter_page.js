@@ -21,7 +21,7 @@ function addMessage(){
     document.getElementById("mensagem").value="";
 }
 
-function getData() {firebase.database().ref("/").on('value',
+function getData() {firebase.database().ref("/"+nome_sala).on('value',
     function(snapshot) {document.getElementById("output").innerHTML ="";
         snapshot.forEach(function(childSnapshot) {
             childKey =childSnapshot.key;
